@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: #ff0066;
+            color: white;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ff0066;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .floating-word {
+            position: absolute;
+            font-size: 2em;
+            color: #ffcccc;
+            opacity: 0;
+            animation: floatWord 5s ease-in-out infinite;
+        }
+
+        @keyframes floatWord {
+            0% { transform: translate(0, 0); opacity: 1; }
+            25% { transform: translate(50px, -50px); opacity: 0.8; }
+            50% { transform: translate(-50px, 50px); opacity: 0.6; }
+            75% { transform: translate(50px, 100px); opacity: 0.4; }
+            100% { transform: translate(-50px, 150px); opacity: 0; }
+        }
+
+        .heart {
+            font-size: 2em;
+            position: absolute;
+            color: #ffcccc;
+            opacity: 0;
+            animation: heartAnimation 1s ease-in-out forwards;
+        }
+
+        @keyframes heartAnimation {
+            0% { transform: scale(0.5); opacity: 1; }
+            50% { transform: translateY(-50px) scale(1.5); opacity: 1; }
+            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+        }
+
+        .option {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.5em;
+            color: #ff3366;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 5px solid #ff3366;
+            display: inline-block;
+            position: relative;
+        }
+
+        .option:hover {
+            transform: scale(1.1);
+        }
+
+        .quotes {
+            font-size: 1.8em;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .bollywood-text {
+            margin-top: 50px;
+            font-size: 1.8em;
+            color: #ffcccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div id="heartContainer"></div>
+        <div id="wordsContainer"></div>
+    </div>
+
+    <div class="quotes">
+        <p>"Real heart for you because you are a future doctor."</p>
+        <p>"You don’t need anyone else to make you feel special, you are already special."</p>
+        <p>"We always wish for a moment, but that moment will always come at the right moment."</p>
+    </div>
+
+    <div class="option" onclick="window.location.href = 'quiz.html'">kitna janti ho tum mujhe?</div>
+    <div class="option" onclick="alert('Love Letter opening...')">tumhare lie meri ek chitthi</div>
+    <div class="option" onclick="alert('Timeline will be shown here')">yad hai tumhe?</div>
+    <div class="option" onclick="alert('Love Notes Incoming!')"> some cheesy lines , kabhi kabhar flirt kar leta hun </div>
+    <div class="option" onclick="alert('tum aage aage, mein piche piche')">mujhse bach ke dikhao</div>
+    <div class="option" onclick="alert('han bolna hin hoga tumhe')">aaapka jawab kya hai</div>
+
+    <div class="bollywood-text">"pyar dosti hai"- ek deewana ladka </div>
+    <div class="bollywood-text">"kuch kuch hota hai, tum ni samjhoge rishu"- ek deewani ladki </div>
+    <div class="bollywood-text">"Pyaar mein sauda nahi hota, pyaar mein sirf pyaar hota hai." </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const words = ["Manish", "Ladoo", "Bongy", "Rishu", "Choclate", "Lovely"];
+            setInterval(() => {
+                const heart = document.createElement("span");
+                heart.classList.add("heart");
+                heart.textContent = "❤️";
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                document.getElementById("heartContainer").appendChild(heart);
+                setTimeout(() => heart.remove(), 1000);
+            }, 200);
+
+            words.forEach((word, index) => {
+                const wordElement = document.createElement("span");
+                wordElement.classList.add("floating-word");
+                wordElement.textContent = word;
+                wordElement.style.left = `${Math.random() * 100}%`;
+                wordElement.style.top = `${Math.random() * 100}%`;
+                wordElement.style.animationDelay = `${index * 1}s`;
+                document.getElementById("wordsContainer").appendChild(wordElement);
+            });
+            setTimeout(() => {
+                document.getElementById("loadingScreen").classList.add("hidden");
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
